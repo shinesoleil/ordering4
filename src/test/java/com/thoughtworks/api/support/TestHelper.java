@@ -20,10 +20,9 @@ public class TestHelper {
         return stackMap;
     }
 
-    public static Map<String, Object> userMap(String email, String name) {
+    public static Map<String, Object> userMap() {
         return new HashMap<String, Object>() {{
-            put("name", name);
-            put("email", email);
+            put("name", "firstUser");
         }};
     }
 

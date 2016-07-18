@@ -55,8 +55,8 @@
  
 2. create user with parameters and find user by user id  
  e: 15 min  
+ r: 13 min
   
-
 3. return 201 when POST user with parameters  
  e: 5 min  
   
