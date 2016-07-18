@@ -27,10 +27,13 @@
   
 6. return a list of products when GET products  
  e: 5 min  
+ r: 17 min  
+ reason: complete the next task at the same time.
     
     
 7. return product json list when GET products  
- e: 5 min
+ e: 5 min  
+ r: 0 min
 
 * ###/products/{productId}
 

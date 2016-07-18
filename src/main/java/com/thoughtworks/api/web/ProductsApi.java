@@ -8,6 +8,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
+import java.util.List;
 
 @Path("products")
 public class ProductsApi {
@@ -30,7 +31,8 @@ public class ProductsApi {
   }
 
   @GET
-  public Response find() {
-    return Response.status(200).build();
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<Product> find() {
+    return productRepository.find();
   }
 }
