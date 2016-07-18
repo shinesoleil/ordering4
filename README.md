@@ -71,8 +71,9 @@
  r: 6 min
   
  
-6. return user json product when GET users  
+6. return user json list when GET users  
  e: 5 min  
+ r: 7 min
   
  
 

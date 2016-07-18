@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -27,9 +29,14 @@ public class UserApiTest extends ApiSupport{
   }
 
   @Test
-  public void should_return_200_when_get_users() {
+  public void should_return_user_json_list_when_get_users() {
+    userRepository.create(TestHelper.userMap());
+
     Response get = get("users");
+    List<Map> userList = get.readEntity(List.class);
 
     assertThat(get.getStatus(), is(200));
+    assertThat(userList.get(0).get("name"), is("firstUser"));
+
   }
 }
