@@ -50,4 +50,12 @@ public class ProductsApiTest extends ApiSupport {
     assertThat(get.getStatus(), is(200));
     assertThat(product.get("name"), is("desk"));
   }
+
+  @Test
+  public void should_return_404_when_get_product_by_product_id_fails() {
+    Response get = get("products/1");
+    Map product = get.readEntity(Map.class);
+
+    assertThat(get.getStatus(), is(404));
+  }
 }

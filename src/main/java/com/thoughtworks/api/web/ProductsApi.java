@@ -39,8 +39,8 @@ public class ProductsApi {
   @GET
   @Path("{productId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Product findById(@PathParam("productId") String productId) {
-    Product product =  productRepository.findById(Integer.valueOf(productId));
+  public Product findById(@PathParam("productId") int productId) {
+    Product product =  productRepository.findById(productId);
 
     if (product != null) {
       return product;

@@ -43,22 +43,22 @@
   
 2. return 404 when GET product by product id fails  
  e: 3 min  
- r: 10 min
+ r: 2 min
   
  
 
 * ###/users
 
 1. return 201 when POST user  
- e: 8 min  
-  
+ e: 5 min  
+ r: 3 min
  
 2. create user with parameters and find user by user id  
- e: 20 min  
+ e: 15 min  
   
 
 3. return 201 when POST user with parameters  
- e: 10 min  
+ e: 5 min  
   
  
 4. return 200 when GET users  
@@ -69,14 +69,14 @@
  e: 6 min  
   
  
-6. return a list of users when GET users  
+6. return user json product when GET users  
  e: 5 min  
   
  
 
 * ###/users/{userId}
 
-1. return user when GET user by user id  
+1. return user json when GET user by user id  
 e: 10 min  
  
  
