@@ -37,13 +37,11 @@
 
 * ###/products/{productId}
 
-1. return product when GET product by product id  
+1. return product json when GET product by product id  
  e: 10 min  
-   
-2. return product json when GET product by product id  
- e: 5 min
- 
-3. return 404 when GET product by product id fails  
+ r: 13 min  
+  
+2. return 404 when GET product by product id fails  
  e: 3 min   
   
  

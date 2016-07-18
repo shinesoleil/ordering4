@@ -35,4 +35,17 @@ public class ProductsApi {
   public List<Product> find() {
     return productRepository.find();
   }
+
+  @GET
+  @Path("{productId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Product findById(@PathParam("productId") String productId) {
+    Product product =  productRepository.findById(Integer.valueOf(productId));
+
+    if (product != null) {
+      return product;
+    } else {
+      throw new WebApplicationException(Response.Status.NOT_FOUND);
+    }
+  }
 }
