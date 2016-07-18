@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -28,5 +29,15 @@ public class UserRepositoryTest {
     User user = userRepository.findById(id);
 
     assertThat(user.getId(), is(id));
+  }
+
+  @Test
+  public void should_find_all_users() {
+    Map<String, Object> info = TestHelper.userMap();
+
+    userRepository.create(info);
+    List<User> userList = userRepository.find();
+
+    assertThat(userList.size(), is(1));
   }
 }

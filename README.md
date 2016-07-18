@@ -68,6 +68,7 @@
  
 5. find all users  
  e: 6 min  
+ r: 6 min
   
  
 6. return user json product when GET users  
