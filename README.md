@@ -42,7 +42,8 @@
  r: 13 min  
   
 2. return 404 when GET product by product id fails  
- e: 3 min   
+ e: 3 min  
+ r: 10 min
   
  
 
