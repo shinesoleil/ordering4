@@ -1,14 +1,36 @@
 package com.thoughtworks.api.web;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import com.thoughtworks.api.domain.product.Product;
+import com.thoughtworks.api.domain.product.ProductRepository;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 
 @Path("products")
 public class ProductsApi {
 
+  @Context
+  ProductRepository productRepository;
+
   @POST
-  public Response createProduct() {
-    return Response.status(201).build();
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response createProduct(HashMap<String, Object> info) {
+    productRepository.create(info);
+
+    Product product = productRepository.findById(Integer.valueOf(String.valueOf(info.get("id"))));
+
+    if (product != null) {
+      return Response.status(201).build();
+    } else {
+      throw new WebApplicationException(Response.Status.BAD_REQUEST);
+    }
+  }
+
+  @GET
+  public Response find() {
+    return Response.status(200).build();
   }
 }

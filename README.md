@@ -12,10 +12,12 @@
   
 3. return 201 when POST product with parameters  
  e: 5 min  
+ r: 4 min
   
 
 4. return 200 when GET products  
  e: 3 min  
+ r: 2 min
   
 
 5. find all products  
