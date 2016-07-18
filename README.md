@@ -22,6 +22,7 @@
 
 5. find all products  
  e: 15 min  
+ r: 6 min
   
   
 6. return a list of products when GET products  

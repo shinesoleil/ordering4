@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,4 +32,12 @@ public class ProductsRepositoryTest {
     assertThat(product.getId(), is(id));
   }
 
+  @Test
+  public void should_find_all_products() {
+    productRepository.create(TestHelper.productMap());
+
+    List<Product> productList = productRepository.find();
+
+    assertThat(productList.size(), is(1));
+  }
 }
