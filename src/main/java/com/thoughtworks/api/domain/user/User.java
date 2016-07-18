@@ -38,6 +38,6 @@ public class User implements Record {
 
   @Override
   public Map<String, Object> toJson(Routes routes) {
-    return null;
+    return toRefJson(routes);
   }
 }
