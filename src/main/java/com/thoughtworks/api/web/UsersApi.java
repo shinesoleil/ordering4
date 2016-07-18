@@ -4,10 +4,7 @@ import com.thoughtworks.api.domain.user.User;
 import com.thoughtworks.api.domain.user.UserRepository;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -30,5 +27,10 @@ public class UsersApi {
     } else {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
+  }
+
+  @GET
+  public Response find() {
+    return Response.status(200).build();
   }
 }

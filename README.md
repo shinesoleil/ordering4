@@ -63,6 +63,7 @@
  
 4. return 200 when GET users  
  e: 3 min  
+ r: 2 min
   
  
 5. find all users  
