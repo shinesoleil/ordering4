@@ -1,11 +1,17 @@
 package com.thoughtworks.api.domain.order;
 
+import com.thoughtworks.api.domain.payment.Payment;
+import com.thoughtworks.api.infrastructure.mybatis.mappers.PaymentMapper;
 import com.thoughtworks.api.infrastructure.records.Record;
 import com.thoughtworks.api.web.jersey.Routes;
 
+import javax.inject.Inject;
 import java.util.*;
 
 public class Order implements Record {
+  @Inject
+  PaymentMapper paymentMapper;
+
   private int id;
   private String name;
   private String address;
@@ -47,6 +53,14 @@ public class Order implements Record {
 
   public List<OrderItem> getOrderItems() {
     return orderItems;
+  }
+
+  public void pay(Map<String, Object> paymentInfo) {
+    paymentMapper.save(paymentInfo);
+  }
+
+  public Payment findPaymentByOrderId(int orderId) {
+    return paymentMapper.findByOrderId(orderId);
   }
 
   private double getTotalPrice() {

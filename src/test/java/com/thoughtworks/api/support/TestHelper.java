@@ -58,6 +58,14 @@ public class TestHelper {
         }};
     }
 
+    public static Map<String, Object> paymentMap(int orderId) {
+        return new HashMap<String, Object>() {{
+            put("order_id", orderId);
+            put("pay_type", "CASH");
+            put("amount", 1500);
+        }};
+    }
+
 //    public static User userForTest(String id, String name, UserRole role) {
 //        String password_123 = "$2a$04$DbgJbGA4dkQSzAvXvJcGBOv5kHuMBzrWfne3x3Cx4JQv4IJcxtBIW";
 //        return new User(new UserId(id), name, name + "@tw.com", role, password_123);
