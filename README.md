@@ -149,6 +149,7 @@ r: 9 min
 
 3. return 201 when POST with parameters  
  e: 8 min  
+ r: 8 min
   
 
 4. return payment when GET payments by order id   
