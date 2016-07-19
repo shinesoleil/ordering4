@@ -3,10 +3,7 @@ package com.thoughtworks.api.domain.order;
 import com.thoughtworks.api.infrastructure.records.Record;
 import com.thoughtworks.api.web.jersey.Routes;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Order implements Record {
   private int id;
@@ -74,6 +71,19 @@ public class Order implements Record {
 
   @Override
   public Map<String, Object> toJson(Routes routes) {
-    return null;
+    List<Map<String, Object>> orderItemsMap = new ArrayList<Map<String, Object>>();
+    for(OrderItem orderItem: orderItems) {
+      orderItemsMap.add(orderItem.toJson());
+    }
+
+    return new HashMap<String, Object>() {{
+      put("uri", "orders/" + id);
+      put("name", name);
+      put("address", address);
+      put("phone", phone);
+      put("created_at", time);
+      put("total_price", getTotalPrice());
+      put("order_items", orderItemsMap);
+    }};
   }
 }

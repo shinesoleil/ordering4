@@ -1,11 +1,9 @@
 package com.thoughtworks.api.domain.order;
 
-import com.thoughtworks.api.infrastructure.records.Record;
-import com.thoughtworks.api.web.jersey.Routes;
-
+import java.util.HashMap;
 import java.util.Map;
 
-public class OrderItem implements Record {
+public class OrderItem {
   private int orderId;
   private int productId;
   private int quantity;
@@ -37,13 +35,11 @@ public class OrderItem implements Record {
     return amount;
   }
 
-  @Override
-  public Map<String, Object> toRefJson(Routes routes) {
-    return null;
-  }
-
-  @Override
-  public Map<String, Object> toJson(Routes routes) {
-    return null;
+  public Map<String, Object> toJson() {
+    return new HashMap<String, Object>() {{
+      put("product_id", productId);
+      put("quantity", quantity);
+      put("amount", amount);
+    }};
   }
 }

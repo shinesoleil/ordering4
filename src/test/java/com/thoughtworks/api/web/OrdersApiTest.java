@@ -67,4 +67,29 @@ public class OrdersApiTest extends ApiSupport{
     assertThat(orderList.get(0).get("name"), is("firstOrder"));
   }
 
+  @Test
+  public void should_return_order_when_get_order_by_user_id_and_order_id() {
+    Map<String, Object> productInfo = TestHelper.productMap();
+    Map<String, Object> userInfo = TestHelper.userMap();
+
+    productRepository.create(productInfo);
+    userRepository.create(userInfo);
+
+    int productId = Integer.valueOf(String.valueOf(productInfo.get("id")));
+    int userId = Integer.valueOf(String.valueOf(userInfo.get("id")));
+
+    User user = userRepository.findById(userId);
+
+    Map<String, Object> orderInfo = TestHelper.orderMap(userId, productId);
+    user.placeOrder(orderInfo);
+    int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
+
+    Response get = get("users/" + userId + "/orders/" + orderId);
+    Map order = get.readEntity(Map.class);
+
+    assertThat(get.getStatus(), is(200));
+    assertThat(order.get("name"), is("firstOrder"));
+
+  }
+
 }

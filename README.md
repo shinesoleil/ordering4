@@ -126,9 +126,9 @@ r: 9 min
 
 * ###/users/{userId}/orders/{orderId}
 
-1. return order when GET order by user id and order id  
+1. return order json when GET order by user id and order id  
  e: 10 min  
-   
+ r: 12 min
 
 2. return 404 when GET order by user id and order id fails  
  e: 3 min  

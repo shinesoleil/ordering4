@@ -39,4 +39,20 @@ public class OrdersApi {
 
     return user.find();
   }
+
+  @GET
+  @Path("{orderId}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Order findById(@PathParam("userId") int userId,
+                        @PathParam("orderId") int orderId) {
+    User user = userRepository.findById(userId);
+
+    Order order = user.findOrderById(orderId);
+
+    if (order != null) {
+      return order;
+    } else {
+      throw new WebApplicationException(Response.Status.NOT_FOUND);
+    }
+  }
 }
