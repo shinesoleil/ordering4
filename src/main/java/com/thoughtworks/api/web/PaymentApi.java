@@ -5,11 +5,9 @@ import com.thoughtworks.api.domain.payment.Payment;
 import com.thoughtworks.api.domain.user.User;
 import com.thoughtworks.api.domain.user.UserRepository;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 
@@ -19,6 +17,7 @@ public class PaymentApi {
   UserRepository userRepository;
 
   @POST
+  @Consumes(MediaType.APPLICATION_JSON)
   public Response createPayment(HashMap<String, Object> info,
                                 @PathParam("userId") int userId,
                                 @PathParam("orderId") int orderId) {
@@ -33,5 +32,14 @@ public class PaymentApi {
     } else {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
+  }
+
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Payment findByOrderId(@PathParam("userId") int userId,
+                               @PathParam("orderId") int orderId) {
+    User user = userRepository.findById(userId);
+    Order order = user.findOrderById(orderId);
+    return order.findPaymentByOrderId(orderId);
   }
 }

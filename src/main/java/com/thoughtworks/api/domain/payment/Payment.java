@@ -3,6 +3,7 @@ package com.thoughtworks.api.domain.payment;
 import com.thoughtworks.api.infrastructure.records.Record;
 import com.thoughtworks.api.web.jersey.Routes;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Payment implements Record{
@@ -44,6 +45,12 @@ public class Payment implements Record{
 
   @Override
   public Map<String, Object> toJson(Routes routes) {
-    return null;
+    return new HashMap<String, Object>() {{
+      put("uri", "orders/" + orderId + "payment");
+      put("order_uri", "orders/" + orderId);
+      put("pay_type", payType);
+      put("amount", amount);
+      put("created_at", payTime);
+    }};
   }
 }
