@@ -94,10 +94,13 @@ r: 9 min
 
 1. return 201 when POST order  
  e: 5 min  
+ r: 3 min
   
 
 2. create order with parameters and find by user id and order id  
  e: 25 min  
+ r: 50 min  
+ reason: mysql get last insert id
     
 
 3. return 201 when POST order with parameters  

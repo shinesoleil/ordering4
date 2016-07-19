@@ -1,12 +1,18 @@
 package com.thoughtworks.api.domain.user;
 
+import com.thoughtworks.api.domain.order.Order;
+import com.thoughtworks.api.infrastructure.mybatis.mappers.OrderMapper;
 import com.thoughtworks.api.infrastructure.records.Record;
 import com.thoughtworks.api.web.jersey.Routes;
 
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
 public class User implements Record {
+  @Inject
+  OrderMapper orderMapper;
+
   private int id;
 
   public User() {
@@ -26,6 +32,14 @@ public class User implements Record {
   }
 
   private String name;
+
+  public void placeOrder(Map<String, Object> info) {
+    orderMapper.save(info);
+  }
+
+  public Order findById(int id) {
+    return orderMapper.findById(id);
+  }
 
   @Override
   public Map<String, Object> toRefJson(Routes routes) {

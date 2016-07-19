@@ -1,6 +1,8 @@
 package com.thoughtworks.api.support;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestHelper {
@@ -31,6 +33,28 @@ public class TestHelper {
             put("name", "desk");
             put("description", "black");
             put("price", 550);
+        }};
+    }
+
+    public static List<Map<String, Object>> orderItemsMap(int productId) {
+        Map<String, Object> item =  new HashMap<String, Object>() {{
+            put("quantity", 2);
+            put("product_id", productId);
+        }};
+
+        return new ArrayList<Map<String, Object>>() {{
+            add(item);
+        }};
+
+    }
+
+    public static Map<String, Object> orderMap(int userId, int productId) {
+        return new HashMap<String, Object>() {{
+            put("name", "firstOrder");
+            put("address", "Beijing");
+            put("phone", "13099999999");
+            put("user_id", userId);
+            put("order_items", orderItemsMap(productId));
         }};
     }
 
