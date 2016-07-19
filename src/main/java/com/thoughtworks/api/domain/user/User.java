@@ -37,7 +37,7 @@ public class User implements Record {
     orderMapper.save(info);
   }
 
-  public Order findById(int id) {
+  public Order findOrderById(int id) {
     return orderMapper.findById(id);
   }
 

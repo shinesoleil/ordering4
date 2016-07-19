@@ -40,7 +40,7 @@ public class OrderManipulationTest {
 
     int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
 
-    Order order = user.findById(orderId);
+    Order order = user.findOrderById(orderId);
 
     assertThat(order.getId(), is(orderId));
     System.out.println(order.getOrderItems().get(0).getAmount() + "hahaha");
