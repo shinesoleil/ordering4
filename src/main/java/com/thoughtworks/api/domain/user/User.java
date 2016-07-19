@@ -7,6 +7,7 @@ import com.thoughtworks.api.web.jersey.Routes;
 
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User implements Record {
@@ -39,6 +40,10 @@ public class User implements Record {
 
   public Order findOrderById(int id) {
     return orderMapper.findById(id);
+  }
+
+  public List<Order> find() {
+    return orderMapper.find();
   }
 
   @Override

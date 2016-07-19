@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.thoughtworks.api.infrastructure.mybatis.mappers.OrderMapper">
-    <insert id="save" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id" >
+    <insert id="save" useGeneratedKeys="true" keyProperty="info.id" keyColumn="id">
         INSERT INTO orders (name, address, phone, user_id)
         VALUES (#{info.name}, #{info.address}, #{info.phone}, #{info.user_id});
 
@@ -9,29 +9,46 @@
 
         INSERT INTO order_items (order_id, product_id, quantity)
         VALUES
-        <foreach item="itemInfo" collection="info.order_items" open="(" separator=","  close=")">
+        <foreach item="itemInfo" collection="info.order_items" open="(" separator="," close=")">
             @LAST_INSERT_ORDER_ID, #{itemInfo.product_id}, #{itemInfo.quantity}
         </foreach>;
     </insert>
 
     <select id="findById" resultMap="records.order">
         SELECT
-            O.id as id,
-            O.name as name,
-            O.address as address,
-            O.phone as phone,
-            O.time as time,
-            O.id as order_id,
-            I.product_id as product_id,
-            I.quantity as quantity,
-            I.quantity * P.price as amount
+            O.id                 AS id,
+            O.name               AS name,
+            O.address            AS address,
+            O.phone              AS phone,
+            O.time               AS time,
+            O.id                 AS order_id,
+            I.product_id         AS product_id,
+            I.quantity           AS quantity,
+            I.quantity * P.price AS amount
         FROM order_items I
             INNER JOIN orders O
-            ON I.order_id = O.id
+                ON I.order_id = O.id
             INNER JOIN products P
-            ON I.product_id = P.id
+                ON I.product_id = P.id
         WHERE I.order_id = #{id}
     </select>
 
+    <select id="find" resultMap="records.order">
+        SELECT
+            O.id                 AS id,
+            O.name               AS name,
+            O.address            AS address,
+            O.phone              AS phone,
+            O.time               AS time,
+            O.id                 AS order_id,
+            I.product_id         AS product_id,
+            I.quantity           AS quantity,
+            I.quantity * P.price AS amount
+        FROM order_items I
+            INNER JOIN orders O
+                ON I.order_id = O.id
+            INNER JOIN products P
+                ON I.product_id = P.id
+    </select>
 
 </mapper>

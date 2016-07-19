@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,6 +44,28 @@ public class OrderManipulationTest {
     Order order = user.findOrderById(orderId);
 
     assertThat(order.getId(), is(orderId));
-    System.out.println(order.getOrderItems().get(0).getAmount() + "hahaha");
+  }
+
+  @Test
+  public void should_find_all_orders() {
+    Map<String, Object> productInfo = TestHelper.productMap();
+    Map<String, Object> userInfo = TestHelper.userMap();
+
+    productRepository.create(productInfo);
+    userRepository.create(userInfo);
+
+    int productId = Integer.valueOf(String.valueOf(productInfo.get("id")));
+    int userId = Integer.valueOf(String.valueOf(userInfo.get("id")));
+
+    User user = userRepository.findById(userId);
+
+    Map<String, Object> orderInfo = TestHelper.orderMap(userId, productId);
+    user.placeOrder(orderInfo);
+    int orderId = Integer.valueOf(String.valueOf(orderInfo.get("id")));
+
+    List<Order> orderList = user.find();
+
+    assertThat(orderList.size(), is(1));
+    assertThat(orderList.get(0).getId(), is(orderId));
   }
 }
