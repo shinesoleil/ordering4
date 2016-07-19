@@ -40,6 +40,12 @@ public class PaymentApi {
                                @PathParam("orderId") int orderId) {
     User user = userRepository.findById(userId);
     Order order = user.findOrderById(orderId);
-    return order.findPaymentByOrderId(orderId);
+    Payment payment = order.findPaymentByOrderId(orderId);
+
+    if (payment != null) {
+      return payment;
+    } else {
+      throw new WebApplicationException(Response.Status.NOT_FOUND);
+    }
   }
 }
