@@ -4,10 +4,7 @@ import com.thoughtworks.api.domain.order.Order;
 import com.thoughtworks.api.domain.user.User;
 import com.thoughtworks.api.domain.user.UserRepository;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -31,5 +28,10 @@ public class OrdersApi {
     } else {
       throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
+  }
+
+  @GET
+  public Response find() {
+    return Response.status(200).build();
   }
 }

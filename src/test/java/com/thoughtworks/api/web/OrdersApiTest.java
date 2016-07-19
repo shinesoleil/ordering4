@@ -40,4 +40,11 @@ public class OrdersApiTest extends ApiSupport{
     assertThat(post.getStatus(), is(201));
   }
 
+  @Test
+  public void should_return_200_when_get_orders() {
+    Response get = get("users/1/orders");
+
+    assertThat(get.getStatus(), is(200));
+  }
+
 }
